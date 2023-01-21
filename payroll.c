@@ -3,9 +3,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <time.h>
 
 #define TRUE 1
 #define FALSE 0
+#define Size 50
 
 struct company // Main structure declaration
 {
@@ -84,6 +86,20 @@ void main()                                             // Main Menu//
     struct company c;
     struct search s;
     struct person *e;
+    
+    
+    //localtime() uses the time pointed by t ,to fill a tm structure with the values that represent the corresponding local time.
+    time_t t ;
+    struct tm *tmp ;
+    char MY_TIME[Size];
+    time( &t );
+    tmp = localtime( &t );
+
+    // using strftime to display time
+    strftime(MY_TIME, sizeof(MY_TIME), "%x - %I:%M%p", tmp);
+    printf("\n\t\t\tAccessing the system on %s\n", MY_TIME );
+
+
     printf("\n\t\t\t----------------------------------------");
     printf("\n\t\t\t  WELCOME TO PAYROLL MANAGEMENT SYSTEM ");
     printf("\n\t\t\t----------------------------------------");
