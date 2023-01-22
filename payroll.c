@@ -161,23 +161,7 @@ void main() // Main Menu//
         scanf(" %d", &i);
         switch (i)
         {
-        /*case 1:
-            front = enqueue_manager();
-            printf("\n\n\t\t***Manager Name*\n");
-            struct person *temp_queue = front;
-            printf("\n\t\t");
-            while (temp_queue)
-            {
-                printf(" %s->", temp_queue->name);
 
-                temp_queue = temp_queue->ptrnext;
-            }
-            printf("NULL");
-            printf("\n\n\t\t(Data is Saving...)");
-            printf("\n\n\t\t(Click [ENTER] To Proceed)");
-            getch();
-            system("cls");
-            break;*/
         case 1:
             push_manager();
             printf("\n\n\t\t***Manager Name*\n");
@@ -405,10 +389,8 @@ void dequeue_manager() // queue delete
         printf("NULL\n\n");
     }
 }
-/*You can see that, I have replaced the dequeue_manager function with a function named pop_manager that takes no argument.
-I have removed the front,rear and temp_queue pointers, as they are not needed for a stack implementation.
-Instead, I have added a call to the pop function at the beginning of the pop_manager function to remove the top element from the stack.
-*/
+
+
 void pop_manager()
 {
     if (top == NULL)
