@@ -343,10 +343,8 @@ struct person *enqueue_manager() // queue insert
     }
     return front;
 }
-/*You can see that, I have replaced the enqueue_manager function with a function named push_manager that takes no argument.
-I have removed the front and rear pointers, as they are not needed for a stack implementation.
-Instead, I have added a call to the push function at the end of the enqueue_manager function
-to add the new element to the stack.*/
+
+
 void push_manager()
 {
     struct person *newptr = (struct person *)malloc(sizeof(struct person));
