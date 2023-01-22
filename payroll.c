@@ -56,7 +56,42 @@ struct person
     struct Salary t;
     struct person *ptrnext; // for linked list, queue and sort
 };
+//////////////////////////////////////////////////////////////////////////////////
+// functions to implement stack using linked list-below the main operations push and pop are implemented
+/*The push function adds a new element to the top of the stack by creating a new Node and updating the top pointer.
+ The pop function removes the top element and returns its value by updating
+ the top pointer and freeing the memory allocated for the removed element.*/
+struct Node
+{
+    struct person data;
+    struct Node *next;
+};
 
+struct Node *top = NULL;
+
+void push(struct person data)
+{
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = top;
+    top = newNode;
+}
+
+struct person pop()
+{
+    if (top == NULL)
+    {
+        printf("Error: Stack is empty\n");
+        struct person empty = {"", "", 0, "", "", "", 0};
+        return empty;
+    }
+    struct person data = top->data;
+    struct Node *temp = top;
+    top = top->next;
+    free(temp);
+    return data;
+}
+////////////////////////////////////////////////////////////////////////////////////////
 struct search
 {
     char id[30];
@@ -68,38 +103,39 @@ struct person *start = NULL;
 struct person *last = NULL;
 
 struct person *temp;
-struct company c_detail();          // return a structure to a calling function
+struct company c_detail();        // return a structure to a calling function
 struct person *enqueue_manager(); // enqueue //return a structure to a calling function
-void dequeue_manager();             // dequeue
+void dequeue_manager();           // dequeue
 void add_employee();
 void edit_employee(struct search);
 void delete_employee(struct search);
-void display_employee();                                // sorting
-void print_slip(struct company);                        // using linear sequential search
+void display_employee();                            // sorting
+void print_slip(struct company);                    // using linear sequential search
 void swapNode(struct person *x, struct person *y);  // swap the hours //
 void swapNode2(struct person *x, struct person *y); // swap the total salary //
-void addLast(struct person *);                        // Selection Sort //
-void main()                                             // Main Menu//
+void addLast(struct person *);                      // Selection Sort //
+
+void push_manager();
+
+void pop_manager();
+void main() // Main Menu//
 {
     int menu, type, i, choice = TRUE, j = TRUE;
     struct person p;
     struct company c;
     struct search s;
     struct person *e;
-    
-    
-//localtime() uses the time pointed by t ,to fill a tm structure with the values that represent the corresponding local time.
-time_t t ;
-struct tm *tmp ;
-char MY_TIME[Size];
-time( &t );
-tmp = localtime( &t );
 
-// using strftime to display time
-strftime(MY_TIME, sizeof(MY_TIME), "%d/%m/%Y - %I:%M %p", tmp);
-printf("\n\t\t\tAccessing the system on %s\n", MY_TIME );
+    // localtime() uses the time pointed by t ,to fill a tm structure with the values that represent the corresponding local time.
+    time_t t;
+    struct tm *tmp;
+    char MY_TIME[Size];
+    time(&t);
+    tmp = localtime(&t);
 
-
+    // using strftime to display time
+    strftime(MY_TIME, sizeof(MY_TIME), "%d/%m/%Y - %I:%M %p", tmp);
+    printf("\n\t\t\tAccessing the system on %s\n", MY_TIME);
 
     printf("\n\t\t\t----------------------------------------");
     printf("\n\t\t\t  WELCOME TO PAYROLL MANAGEMENT SYSTEM ");
@@ -112,22 +148,22 @@ printf("\n\t\t\tAccessing the system on %s\n", MY_TIME );
     while (j == TRUE)
     {
         printf("\n\t\t\t\t\tMANAGER LIST"); // enqueue and dequeue
-        printf("\n\t\t\t ___________________________________________________");
+        printf("\n\t\t\t _________________");
         printf("\n\t\t\t| [1] ADD MANAGER                                   |"); // enqueue
-        printf("\n\t\t\t|___________________________________________________|");
+        printf("\n\t\t\t|_________________|");
         printf("\n\t\t\t| [2] DELETE MANAGER                                |"); // linear search and dequeue
-        printf("\n\t\t\t|___________________________________________________|");
+        printf("\n\t\t\t|_________________|");
         printf("\n\t\t\t| [3] CONTINUE                                      |");
-        printf("\n\t\t\t|___________________________________________________|\n\t\t\t\t\t\t\t\t");
+        printf("\n\t\t\t|_________________|\n\t\t\t\t\t\t\t\t");
         printf("\n\t\t\t\tPLEASE CHOOSE A NUMBER IN THE BOX ABOVE");
 
         printf("\n\n\tEnter choice: ");
         scanf(" %d", &i);
         switch (i)
         {
-        case 1:
+        /*case 1:
             front = enqueue_manager();
-            printf("\n\n\t\t****Manager Name****\n");
+            printf("\n\n\t\t***Manager Name*\n");
             struct person *temp_queue = front;
             printf("\n\t\t");
             while (temp_queue)
@@ -141,10 +177,20 @@ printf("\n\t\t\tAccessing the system on %s\n", MY_TIME );
             printf("\n\n\t\t(Click [ENTER] To Proceed)");
             getch();
             system("cls");
+            break;*/
+        case 1:
+            push_manager();
+            printf("\n\n\t\t***Manager Name*\n");
+            struct person data = top->data;
+            printf("\n\t\t%s", data.name);
+            printf("\n\n\t\t(Data is Saving...)");
+            printf("\n\n\t\t(Click [ENTER] To Proceed)");
+            getch();
+            system("cls");
             break;
 
         case 2:
-            dequeue_manager();
+            pop_manager();
             break;
 
         case 3:
@@ -162,13 +208,13 @@ printf("\n\t\t\tAccessing the system on %s\n", MY_TIME );
     while (choice == TRUE)
     {
         printf("\n\t\t\t\t\tPAYROLL MANAGEMENT MENU");
-        printf("\n\t\t\t___________________________________________________");
+        printf("\n\t\t\t___________________");
         printf("\n\t\t\t| [1] MANAGE EMPLOYEES                            |");
-        printf("\n\t\t\t|_________________________________________________|");
+        printf("\n\t\t\t|_________________|");
         printf("\n\t\t\t| [2] PRINT SLIP                                  |"); // implement linear search //
-        printf("\n\t\t\t|_________________________________________________|");
+        printf("\n\t\t\t|_________________|");
         printf("\n\t\t\t| [3] EXIT                                        |");
-        printf("\n\t\t\t|_________________________________________________|\n\t\t\t\t\t\t\t\t");
+        printf("\n\t\t\t|_________________|\n\t\t\t\t\t\t\t\t");
 
         printf("\n\t\t\t\tPLEASE CHOOSE A NUMBER IN THE BOX ABOVE");
         printf("\n\n\tEnter choice: ");
@@ -178,17 +224,17 @@ printf("\n\t\t\tAccessing the system on %s\n", MY_TIME );
         {
         case 1:
             printf("\n\t\t\t\t\tMANAGE EMPLOYEES");
-            printf("\n\t\t\t__________________________________________________");
+            printf("\n\t\t\t__________________");
             printf("\n\t\t\t| [1] ADD EMPLOYEES                               |"); // implement enqueue//
-            printf("\n\t\t\t|_________________________________________________|");
+            printf("\n\t\t\t|_________________|");
             printf("\n\t\t\t| [2] EDIT EMPLOYEES                              |"); // implement linear search
-            printf("\n\t\t\t|_________________________________________________|");
+            printf("\n\t\t\t|_________________|");
             printf("\n\t\t\t| [3] DELETE EMPLOYEES                            |"); // implement dequeue//
-            printf("\n\t\t\t|_________________________________________________|");
+            printf("\n\t\t\t|_________________|");
             printf("\n\t\t\t| [4] DISPLAY EMPLOYEES                           |"); // implement sorting
-            printf("\n\t\t\t|_________________________________________________|");
+            printf("\n\t\t\t|_________________|");
             printf("\n\t\t\t| [5] EXIT                                        |");
-            printf("\n\t\t\t|_________________________________________________|");
+            printf("\n\t\t\t|_________________|");
 
             printf("\n\n\t\t\t\tPLEASE CHOOSE A NUMBER IN THE BOX ABOVE");
             printf("\n\n\tEnter choice: ");
@@ -234,7 +280,7 @@ printf("\n\t\t\tAccessing the system on %s\n", MY_TIME );
         case 3:
             system("cls");
             choice = FALSE;
-            printf("\n\n\t\t*****Thank You For Using Payroll Management System, See You Again*******\n\n");
+            printf("\n\n\t\t**Thank You For Using Payroll Management System, See You Again**\n\n");
             break;
 
         default:
@@ -264,7 +310,7 @@ struct person *enqueue_manager() // queue insert
     newptr = (struct person *)malloc(sizeof(struct person));
 
     system("cls");
-    printf("\n\t\t\t****ADD MANAGER*****");
+    printf("\n\t\t\t***ADD MANAGER**");
     printf("\n\n\t Manager Name : ");
     fflush(stdin);
     scanf("%[^\n]s", &newptr->name);
@@ -297,6 +343,36 @@ struct person *enqueue_manager() // queue insert
     }
     return front;
 }
+/*You can see that, I have replaced the enqueue_manager function with a function named push_manager that takes no argument.
+I have removed the front and rear pointers, as they are not needed for a stack implementation.
+Instead, I have added a call to the push function at the end of the enqueue_manager function
+to add the new element to the stack.*/
+void push_manager()
+{
+    struct person *newptr = (struct person *)malloc(sizeof(struct person));
+
+    system("cls");
+    printf("\n\t\t\t***ADD MANAGER**");
+    printf("\n\n\t Manager Name : ");
+    fflush(stdin);
+    scanf("%[^\n]s", &newptr->name);
+    printf("\n\n\t No IC : ");
+    scanf("%s", &newptr->ic);
+    printf("\n\n\t Age : ");
+    scanf("%d", &newptr->age);
+    printf("\n\n\t Gender [FEMALE,MALE] : ");
+    scanf("%s", &newptr->gender);
+    printf("\n\n\t Date of Birth [DD/MM/YY] : ");
+    scanf("%s", &newptr->dob);
+    printf("\n\n\t E-mail : ");
+    scanf("%s", &newptr->email);
+    printf("\n\n\t Maritial Status [1-SINGLE, 2-MARRIED, 3-DIVORCED]: ");
+    scanf("%d", &newptr->maritial_s);
+
+    newptr->ptrnext = NULL;
+    push(*newptr);
+}
+
 void dequeue_manager() // queue delete
 {
     struct person *temp_queue;
@@ -321,7 +397,7 @@ void dequeue_manager() // queue delete
         system("cls");
         printf("\n\n\t\tDelete Successful.");
         struct person *temp_queue = front;
-        printf("\n\n\t\t****Manager Name****");
+        printf("\n\n\t\t***Manager Name*");
         printf("\n\n\t\t");
         while (temp_queue)
         {
@@ -331,6 +407,24 @@ void dequeue_manager() // queue delete
         printf("NULL\n\n");
     }
 }
+/*You can see that, I have replaced the dequeue_manager function with a function named pop_manager that takes no argument.
+I have removed the front,rear and temp_queue pointers, as they are not needed for a stack implementation.
+Instead, I have added a call to the pop function at the beginning of the pop_manager function to remove the top element from the stack.
+*/
+void pop_manager()
+{
+    if (top == NULL)
+    {
+        printf("Error: Stack is empty\n");
+    }
+    else
+    {
+        struct person data = pop();
+        printf("\n\n\t\tDelete Successful.");
+        printf("\n\n\t\t***Manager Name*\n\t\t%s", data.name);
+    }
+}
+
 void add_employee() // linked list insert at the end
 {
     newptr = (struct person *)malloc(sizeof(struct person));
@@ -545,7 +639,7 @@ void display_employee() // sorting salary and working hours from low to high
         while (choice == TRUE)
         {
             printf("\n\n\t\t\tItem");
-            printf("\n\t______________________________________");
+            printf("\n\t______________");
             printf("\n\t| [1] Total Hours Work               |");
             printf("\n\t| [2] Salary                         |");
             printf("\n\t| [3] Exit                           |");
@@ -577,7 +671,7 @@ void display_employee() // sorting salary and working hours from low to high
                     printf("\nEmpty list");
                     return;
                 }
-                printf("\n\n\t***Sorted List Working Hours For Employee from Low to High***");
+                printf("\n\n\t**Sorted List Working Hours For Employee from Low to High**");
                 printf("\n\n\t\t------Hour-----\n");
                 temp = start;
                 while (temp->ptrnext != NULL)
@@ -612,7 +706,7 @@ void display_employee() // sorting salary and working hours from low to high
                     printf("\nEmpty list");
                     return;
                 }
-                printf("\n\n\t\t***Sorted List For Employee Salary From Low to High***");
+                printf("\n\n\t\t**Sorted List For Employee Salary From Low to High**");
                 printf("\n\n\t\t------Total Salary-----\n");
                 temp = start;
                 while (temp->ptrnext != NULL)
@@ -665,7 +759,7 @@ void print_slip(struct company c) // display company info and selected employees
         currentptr = headptr;
         do
         {
-            printf("\n\t\t\t****Company Details****\n");
+            printf("\n\t\t\t***Company Details*\n");
             printf("\n\t\tName : %s", c.c_name);
             printf("\n\t\tAddress : %s", c.c_add);
             printf("\n\t\tYears : %d", c.c_year);
@@ -675,12 +769,12 @@ void print_slip(struct company c) // display company info and selected employees
             {
                 if (front == NULL)
                 {
-                    printf("\n\t\t\t****Manager List****\n");
+                    printf("\n\t\t\t***Manager List*\n");
                     printf("\n\t\t Empty\n");
                 }
                 else
                 {
-                    printf("\n\t\t\t****Manager Details****\n");
+                    printf("\n\t\t\t***Manager Details*\n");
                     struct person *temp_queue = front;
                     while (temp_queue)
                     {
@@ -696,7 +790,7 @@ void print_slip(struct company c) // display company info and selected employees
                         number++;
                     }
                 }
-                printf("\n\n\t\t\t****Employee Details****\n");
+                printf("\n\n\t\t\t***Employee Details*\n");
                 printf("\n\t\tName : %s", currentptr->e.e_name);
                 printf("\n\t\tID : %s", currentptr->e.e_id);
                 printf("\n\t\tAge : %d", currentptr->e.age);
@@ -718,8 +812,8 @@ void print_slip(struct company c) // display company info and selected employees
                     amount_socso = t_salary * 0.05;
                 }
                 currentptr->t.T_salary = t_salary - amount_epf - amount_socso;
-                printf("\n\n\t\t***No EPF : %d \t\t***EPF Amount : RM%.2f", currentptr->s.n_epf, amount_epf);
-                printf("\n\t\t***No Socso : %d\t\t***Socso Amount : RM%.2f", currentptr->s.n_socso, amount_socso);
+                printf("\n\n\t\t**No EPF : %d \t\t**EPF Amount : RM%.2f", currentptr->s.n_epf, amount_epf);
+                printf("\n\t\t**No Socso : %d\t\t**Socso Amount : RM%.2f", currentptr->s.n_socso, amount_socso);
                 printf("\n\n\t\tTotal Salary : RM%.2f", currentptr->t.T_salary);
                 printf("\n\n\n");
                 return;
