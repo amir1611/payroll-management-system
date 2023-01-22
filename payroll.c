@@ -96,7 +96,7 @@ time( &t );
 tmp = localtime( &t );
 
 // using strftime to display time
-strftime(MY_TIME, sizeof(MY_TIME), "%d/%m/%Y - %I:%M%p", tmp);
+strftime(MY_TIME, sizeof(MY_TIME), "%d/%m/%Y - %I:%M %p", tmp);
 printf("\n\t\t\tAccessing the system on %s\n", MY_TIME );
 
 
