@@ -61,6 +61,7 @@ struct person
 /*The push function adds a new element to the top of the stack by creating a new Node and updating the top pointer.
  The pop function removes the top element and returns its value by updating
  the top pointer and freeing the memory allocated for the removed element.*/
+
 struct Node
 {
     struct person data;
@@ -148,13 +149,13 @@ void main() // Main Menu//
     while (j == TRUE)
     {
         printf("\n\t\t\t\t\tMANAGER LIST"); // enqueue and dequeue
-        printf("\n\t\t\t _________________");
-        printf("\n\t\t\t| [1] ADD MANAGER                                   |"); // enqueue
-        printf("\n\t\t\t|_________________|");
-        printf("\n\t\t\t| [2] DELETE MANAGER                                |"); // linear search and dequeue
-        printf("\n\t\t\t|_________________|");
-        printf("\n\t\t\t| [3] CONTINUE                                      |");
-        printf("\n\t\t\t|_________________|\n\t\t\t\t\t\t\t\t");
+        printf("\n\t\t\t ___________________");
+        printf("\n\t\t\t| [1] ADD MANAGER   |"); // enqueue
+        printf("\n\t\t\t|___________________|");
+        printf("\n\t\t\t| [2] DELETE MANAGER|"); // linear search and dequeue
+        printf("\n\t\t\t|___________________|");
+        printf("\n\t\t\t| [3] CONTINUE      |");
+        printf("\n\t\t\t|___________________|\n\t\t\t\t\t\t\t\t");
         printf("\n\t\t\t\tPLEASE CHOOSE A NUMBER IN THE BOX ABOVE");
 
         printf("\n\n\tEnter choice: ");
@@ -192,13 +193,13 @@ void main() // Main Menu//
     while (choice == TRUE)
     {
         printf("\n\t\t\t\t\tPAYROLL MANAGEMENT MENU");
-        printf("\n\t\t\t___________________");
-        printf("\n\t\t\t| [1] MANAGE EMPLOYEES                            |");
-        printf("\n\t\t\t|_________________|");
-        printf("\n\t\t\t| [2] PRINT SLIP                                  |"); // implement linear search //
-        printf("\n\t\t\t|_________________|");
-        printf("\n\t\t\t| [3] EXIT                                        |");
-        printf("\n\t\t\t|_________________|\n\t\t\t\t\t\t\t\t");
+        printf("\n\t\t\t_______________________");
+        printf("\n\t\t\t| [1] MANAGE EMPLOYEES |");
+        printf("\n\t\t\t|______________________|");
+        printf("\n\t\t\t| [2] PRINT SLIP       |"); // implement linear search //
+        printf("\n\t\t\t|______________________|");
+        printf("\n\t\t\t| [3] EXIT             |");
+        printf("\n\t\t\t|______________________|\n\t\t\t\t\t\t\t\t");
 
         printf("\n\t\t\t\tPLEASE CHOOSE A NUMBER IN THE BOX ABOVE");
         printf("\n\n\tEnter choice: ");
@@ -208,17 +209,17 @@ void main() // Main Menu//
         {
         case 1:
             printf("\n\t\t\t\t\tMANAGE EMPLOYEES");
-            printf("\n\t\t\t__________________");
-            printf("\n\t\t\t| [1] ADD EMPLOYEES                               |"); // implement enqueue//
-            printf("\n\t\t\t|_________________|");
-            printf("\n\t\t\t| [2] EDIT EMPLOYEES                              |"); // implement linear search
-            printf("\n\t\t\t|_________________|");
-            printf("\n\t\t\t| [3] DELETE EMPLOYEES                            |"); // implement dequeue//
-            printf("\n\t\t\t|_________________|");
-            printf("\n\t\t\t| [4] DISPLAY EMPLOYEES                           |"); // implement sorting
-            printf("\n\t\t\t|_________________|");
-            printf("\n\t\t\t| [5] EXIT                                        |");
-            printf("\n\t\t\t|_________________|");
+            printf("\n\t\t\t_______________________");
+            printf("\n\t\t\t| [1] ADD EMPLOYEES    |"); // implement enqueue//
+            printf("\n\t\t\t|______________________|");
+            printf("\n\t\t\t| [2] EDIT EMPLOYEES   |"); // implement linear search
+            printf("\n\t\t\t|______________________|");
+            printf("\n\t\t\t| [3] DELETE EMPLOYEES |"); // implement dequeue//
+            printf("\n\t\t\t|______________________|");
+            printf("\n\t\t\t| [4] DISPLAY EMPLOYEES|"); // implement sorting
+            printf("\n\t\t\t|______________________|");
+            printf("\n\t\t\t| [5] EXIT             |");
+            printf("\n\t\t\t|______________________|");
 
             printf("\n\n\t\t\t\tPLEASE CHOOSE A NUMBER IN THE BOX ABOVE");
             printf("\n\n\tEnter choice: ");
@@ -606,7 +607,11 @@ void display_employee() // sorting salary and working hours from low to high
             printf("\n\tEmployee ID : %s", currentptr->e.e_id);
             printf("\n\tName : %s", currentptr->e.e_name);
             printf("\n\tPosition : %s", currentptr->e.position);
-            printf("\n\tDate Employment : %s", currentptr->e.e_date);
+            printf("\n\tDate Employment : ");
+            for (int i = 0; i < 10; i++)
+            {
+                printf("%c", currentptr->e.e_date[i]);
+            }
             printf("\n\tTotal Hours for work : %d", currentptr->e.hour);
             printf("\n\tTotal Salary for work : RM%.2f", currentptr->e.salary);
             printf("\n\t--------------------------------");
@@ -776,7 +781,12 @@ void print_slip(struct company c) // display company info and selected employees
                 printf("\n\t\tAge : %d", currentptr->e.age);
                 printf("\n\t\tGender : %s", currentptr->e.e_gender);
                 printf("\n\t\tEmail : %s", currentptr->e.e_email);
-                printf("\n\t\tEmployment Date : %s", currentptr->e.e_date);
+                printf("\n\t\tEmployment Date : ");
+                for (int i = 0; i < 10; i++)
+                {
+                    printf("%c", currentptr->e.e_date[i]);
+                }
+                
                 printf("\n\t\tWorking Hours : %d", currentptr->e.hour);
                 printf("\n\t\tPosition : %s", currentptr->e.position);
                 printf("\n\t\tSalary : RM%.2f", currentptr->e.salary);
