@@ -624,11 +624,11 @@ void display_employee() // sorting salary and working hours from low to high
         while (choice == TRUE)
         {
             printf("\n\n\t\t\tItem");
-            printf("\n\t______________");
-            printf("\n\t| [1] Total Hours Work               |");
-            printf("\n\t| [2] Salary                         |");
-            printf("\n\t| [3] Exit                           |");
-            printf("\n\t--------------------------------------");
+            printf("\n\t _______________________");
+            printf("\n\t| [1] Total Hours Work  |");
+            printf("\n\t| [2] Salary            |");
+            printf("\n\t| [3] Exit              |");
+            printf("\n\t _______________________");
 
             printf("\n\n\tSelect What Item To Sort : ");
             scanf(" %d", &sort);
@@ -802,8 +802,8 @@ void print_slip(struct company c) // display company info and selected employees
                     amount_socso = t_salary * 0.05;
                 }
                 currentptr->t.T_salary = t_salary - amount_epf - amount_socso;
-                printf("\n\n\t\t**No EPF : %d \t\t**EPF Amount : RM%.2f", currentptr->s.n_epf, amount_epf);
-                printf("\n\t\t**No Socso : %d\t\t**Socso Amount : RM%.2f", currentptr->s.n_socso, amount_socso);
+                printf("\n\n\t\tNo EPF : %d \t\tEPF Amount : RM%.2f", currentptr->s.n_epf, amount_epf);
+                printf("\n\t\tNo Socso : %d\t\tSocso Amount : RM%.2f", currentptr->s.n_socso, amount_socso);
                 printf("\n\n\t\tTotal Salary : RM%.2f", currentptr->t.T_salary);
                 printf("\n\n\n");
                 return;
