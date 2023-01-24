@@ -20,12 +20,12 @@ struct employee // Main structure declaration
 {
     char e_id[10];
     char e_name[30];
-    int age;
     char e_gender[10];
     char e_email[30];
     char e_date[10];
     char position[100];
     int hour;
+    int age;
     float salary;
 };
 
@@ -61,7 +61,6 @@ struct person
 /*The push function adds a new element to the top of the stack by creating a new Node and updating the top pointer.
  The pop function removes the top element and returns its value by updating
  the top pointer and freeing the memory allocated for the removed element.*/
-
 struct Node
 {
     struct person data;
@@ -117,7 +116,6 @@ void swapNode2(struct person *x, struct person *y); // swap the total salary //
 void addLast(struct person *);                      // Selection Sort //
 void push_manager();
 void pop_manager();
-
 
 void main() // Main Menu//
 {
@@ -366,11 +364,11 @@ void dequeue_manager() // queue delete
     }
     else
     {
-        // take backup
+        // store the first node in temp_queue   
         temp_queue = front;
-        // make the front node points to the next node
-        // logically removing the front element
+        // move front to the next node
         front = front->ptrnext;
+        // if front is NULL, then the list is empty
         if (front == NULL)
         {
             rear = NULL;
@@ -390,7 +388,6 @@ void dequeue_manager() // queue delete
         printf("NULL\n\n");
     }
 }
-
 
 void pop_manager()
 {
@@ -484,6 +481,7 @@ void addLast(struct person *e)
         last = hodor;
     }
 }
+
 void edit_employee(struct search s) // linked list update data
 {
     int editdata;
@@ -613,7 +611,7 @@ void display_employee() // sorting salary and working hours from low to high
                 printf("%c", currentptr->e.e_date[i]);
             }
             printf("\n\tTotal Hours for work : %d", currentptr->e.hour);
-            printf("\n\tTotal Salary for work : RM%.2f", currentptr->e.salary);
+            printf("\n\tTotal Salary for work : RM %.2f", currentptr->e.salary);
             printf("\n\t--------------------------------");
             printf("\n\n\t(Click [ENTER] To Proceed)");
             currentptr = currentptr->ptrnext; // point to next node
@@ -752,7 +750,8 @@ void print_slip(struct company c) // display company info and selected employees
             printf("\n\n");
             if (strcasecmp(currentptr->e.e_id, searchKeyword) == 0)
             {
-                if (front == NULL)
+
+                if (top == NULL)
                 {
                     printf("\n\t\t\t***Manager List*\n");
                     printf("\n\t\t Empty\n");
@@ -760,21 +759,23 @@ void print_slip(struct company c) // display company info and selected employees
                 else
                 {
                     printf("\n\t\t\t***Manager Details*\n");
-                    struct person *temp_queue = front;
-                    while (temp_queue)
+                    struct Node *temp_stack = top;
+
+                    while (temp_stack)
                     {
                         printf("\n\t\tManager No %d", number + 1);
-                        printf("\n\t\tName : %s", temp_queue->name);
-                        printf("\n\t\tIC : %s", temp_queue->ic);
-                        printf("\n\t\tEmail : %s", temp_queue->email);
-                        printf("\n\t\tGender : %s", temp_queue->gender);
-                        printf("\n\t\tDate of Birth : %s", temp_queue->dob);
-                        printf("\n\t\tMartial Status: %d", temp_queue->maritial_s);
+                        printf("\n\t\tName : %s", temp_stack->data.name);
+                        printf("\n\t\tIC : %s", temp_stack->data.ic);
+                        printf("\n\t\tEmail : %s", temp_stack->data.email);
+                        printf("\n\t\tGender : %s", temp_stack->data.gender);
+                        printf("\n\t\tDate of Birth : %s", temp_stack->data.dob);
+                        printf("\n\t\tMartial Status: %d", temp_stack->data.maritial_s);
                         printf("\n");
-                        temp_queue = temp_queue->ptrnext;
+                        temp_stack = temp_stack->next;
                         number++;
                     }
                 }
+
                 printf("\n\n\t\t\t***Employee Details*\n");
                 printf("\n\t\tName : %s", currentptr->e.e_name);
                 printf("\n\t\tID : %s", currentptr->e.e_id);
@@ -786,7 +787,7 @@ void print_slip(struct company c) // display company info and selected employees
                 {
                     printf("%c", currentptr->e.e_date[i]);
                 }
-                
+
                 printf("\n\t\tWorking Hours : %d", currentptr->e.hour);
                 printf("\n\t\tPosition : %s", currentptr->e.position);
                 printf("\n\t\tSalary : RM%.2f", currentptr->e.salary);
@@ -802,9 +803,9 @@ void print_slip(struct company c) // display company info and selected employees
                     amount_socso = t_salary * 0.05;
                 }
                 currentptr->t.T_salary = t_salary - amount_epf - amount_socso;
-                printf("\n\n\t\tNo EPF : %d \t\tEPF Amount : RM%.2f", currentptr->s.n_epf, amount_epf);
+                printf("\n\n\t\tNo EPF   : %d \t\tEPF Amount   : RM%.2f", currentptr->s.n_epf, amount_epf);
                 printf("\n\t\tNo Socso : %d\t\tSocso Amount : RM%.2f", currentptr->s.n_socso, amount_socso);
-                printf("\n\n\t\tTotal Salary : RM%.2f", currentptr->t.T_salary);
+                printf("\n\n\t\tTotal Salary : RM %.2f", currentptr->t.T_salary);
                 printf("\n\n\n");
                 return;
             }
