@@ -115,10 +115,10 @@ void print_slip(struct company);                    // using linear sequential s
 void swapNode(struct person *x, struct person *y);  // swap the hours //
 void swapNode2(struct person *x, struct person *y); // swap the total salary //
 void addLast(struct person *);                      // Selection Sort //
-
 void push_manager();
-
 void pop_manager();
+
+
 void main() // Main Menu//
 {
     int menu, type, i, choice = TRUE, j = TRUE;
@@ -148,14 +148,14 @@ void main() // Main Menu//
     system("cls");
     while (j == TRUE)
     {
-        printf("\n\t\t\t\t\tMANAGER LIST"); // enqueue and dequeue
-        printf("\n\t\t\t ___________________");
-        printf("\n\t\t\t| [1] ADD MANAGER   |"); // enqueue
-        printf("\n\t\t\t|___________________|");
-        printf("\n\t\t\t| [2] DELETE MANAGER|"); // linear search and dequeue
-        printf("\n\t\t\t|___________________|");
-        printf("\n\t\t\t| [3] CONTINUE      |");
-        printf("\n\t\t\t|___________________|\n\t\t\t\t\t\t\t\t");
+        printf("\n\t\t\t\t\t    MANAGER LIST"); // enqueue and dequeue                
+        printf("\n\t\t\t\t\t ___________________");
+        printf("\n\t\t\t\t\t| [1] ADD MANAGER   |"); // enqueue
+        printf("\n\t\t\t\t\t|___________________|");
+        printf("\n\t\t\t\t\t| [2] DELETE MANAGER|"); // linear search and dequeue
+        printf("\n\t\t\t\t\t|___________________|");
+        printf("\n\t\t\t\t\t| [3] CONTINUE      |");
+        printf("\n\t\t\t\t\t|___________________|\n\t\t\t\t\t\t\t\t");
         printf("\n\t\t\t\tPLEASE CHOOSE A NUMBER IN THE BOX ABOVE");
 
         printf("\n\n\tEnter choice: ");
@@ -193,13 +193,13 @@ void main() // Main Menu//
     while (choice == TRUE)
     {
         printf("\n\t\t\t\t\tPAYROLL MANAGEMENT MENU");
-        printf("\n\t\t\t_______________________");
-        printf("\n\t\t\t| [1] MANAGE EMPLOYEES |");
-        printf("\n\t\t\t|______________________|");
-        printf("\n\t\t\t| [2] PRINT SLIP       |"); // implement linear search //
-        printf("\n\t\t\t|______________________|");
-        printf("\n\t\t\t| [3] EXIT             |");
-        printf("\n\t\t\t|______________________|\n\t\t\t\t\t\t\t\t");
+        printf("\n\t\t\t\t\t ______________________");
+        printf("\n\t\t\t\t\t| [1] MANAGE EMPLOYEES |");
+        printf("\n\t\t\t\t\t|______________________|");
+        printf("\n\t\t\t\t\t| [2] PRINT SLIP       |"); // implement linear search //
+        printf("\n\t\t\t\t\t|______________________|");
+        printf("\n\t\t\t\t\t| [3] EXIT             |");
+        printf("\n\t\t\t\t\t|______________________|\n\t\t\t\t\t\t\t\t");
 
         printf("\n\t\t\t\tPLEASE CHOOSE A NUMBER IN THE BOX ABOVE");
         printf("\n\n\tEnter choice: ");
@@ -208,18 +208,18 @@ void main() // Main Menu//
         switch (menu)
         {
         case 1:
-            printf("\n\t\t\t\t\tMANAGE EMPLOYEES");
-            printf("\n\t\t\t_______________________");
-            printf("\n\t\t\t| [1] ADD EMPLOYEES    |"); // implement enqueue//
-            printf("\n\t\t\t|______________________|");
-            printf("\n\t\t\t| [2] EDIT EMPLOYEES   |"); // implement linear search
-            printf("\n\t\t\t|______________________|");
-            printf("\n\t\t\t| [3] DELETE EMPLOYEES |"); // implement dequeue//
-            printf("\n\t\t\t|______________________|");
-            printf("\n\t\t\t| [4] DISPLAY EMPLOYEES|"); // implement sorting
-            printf("\n\t\t\t|______________________|");
-            printf("\n\t\t\t| [5] EXIT             |");
-            printf("\n\t\t\t|______________________|");
+            printf("\n\t\t\t\t\t   MANAGE EMPLOYEES");
+            printf("\n\t\t\t\t\t ______________________");
+            printf("\n\t\t\t\t\t| [1] ADD EMPLOYEES    |"); // implement enqueue//
+            printf("\n\t\t\t\t\t|______________________|");
+            printf("\n\t\t\t\t\t| [2] EDIT EMPLOYEES   |"); // implement linear search
+            printf("\n\t\t\t\t\t|______________________|");
+            printf("\n\t\t\t\t\t| [3] DELETE EMPLOYEES |"); // implement dequeue//
+            printf("\n\t\t\t\t\t|______________________|");
+            printf("\n\t\t\t\t\t| [4] DISPLAY EMPLOYEES|"); // implement sorting
+            printf("\n\t\t\t\t\t|______________________|");
+            printf("\n\t\t\t\t\t| [5] EXIT             |");
+            printf("\n\t\t\t\t\t|______________________|");
 
             printf("\n\n\t\t\t\tPLEASE CHOOSE A NUMBER IN THE BOX ABOVE");
             printf("\n\n\tEnter choice: ");
