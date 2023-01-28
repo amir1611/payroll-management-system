@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdio.h> 
 #include <conio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -101,7 +101,6 @@ struct search
 struct person *headptr, *newptr, *currentptr, *previousptr, *front = NULL, *rear = NULL;
 struct person *start = NULL;
 struct person *last = NULL;
-
 struct person *temp;
 struct company c_detail();        // return a structure to a calling function
 struct person *enqueue_manager(); // enqueue //return a structure to a calling function
@@ -303,7 +302,7 @@ struct person *enqueue_manager() // queue insert
     scanf("%d", &newptr->age);
     printf("\n\n\t Gender [FEMALE,MALE] : ");
     scanf("%s", &newptr->gender);
-    printf("\n\n\t Date of Birth [DD/MM/YY] : ");
+    printf("\n\n\t Date of Birth [DD/MM/YYYY] : ");
     scanf("%s", &newptr->dob);
     printf("\n\n\t E-mail : ");
     scanf("%s", &newptr->email);
@@ -343,7 +342,7 @@ void push_manager()
     scanf("%d", &newptr->age);
     printf("\n\n\t Gender [FEMALE,MALE] : ");
     scanf("%s", &newptr->gender);
-    printf("\n\n\t Date of Birth [DD/MM/YY] : ");
+    printf("\n\n\t Date of Birth [DD/MM/YYYY] : ");
     scanf("%s", &newptr->dob);
     printf("\n\n\t E-mail : ");
     scanf("%s", &newptr->email);
@@ -469,16 +468,16 @@ void addLast(struct person *e)
     float i;
     x = e->e.hour;
     i = e->e.salary;
-    struct person *hodor = newNode(i, x);
+    struct person *passing = newNode(i, x);
     if (start == NULL)
     {
-        start = hodor;
-        last = hodor;
+        start = passing;
+        last = passing;
     }
     else
     {
-        last->ptrnext = hodor;
-        last = hodor;
+        last->ptrnext = passing;
+        last = passing;
     }
 }
 
